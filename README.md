@@ -1,3 +1,5 @@
+## HRMS Frontend
+Professional React UI for HR Management System with Employee CRUD.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
