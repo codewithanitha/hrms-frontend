@@ -1,0 +1,107 @@
+/* AddEmployee.css */
+
+/* GLOBAL FIX – IMPORTANT */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 🔥 KILLS PAGE SCROLL */
+}
+
+/* Wrapper takes ONLY visible screen */
+.add-employee-wrapper {
+  flex: 1;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* 🔥 no scroll */
+}
+
+/* Purple Card */
+.add-employee-container {
+  width: 90%;
+  max-width: 850px;
+  background-color: #e2d5f3;
+  padding: 25px 45px;   /* slightly reduced to fit */
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+/* Title */
+.page-title {
+  text-align: left;
+  font-size: 30px;
+  font-weight: 800;
+  color: #4b2e83;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;   /* 🔥 reduced gap to avoid overflow */
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #4b2e83;
+  font-size: 14px;
+}
+
+.form-group input {
+  padding: 9px 12px;  /* 🔥 reduced height */
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #ffffff;
+  outline: none;
+}
+
+/* Button */
+.submit-btn {
+  background-color: #4b2e83;
+  color: white;
+  padding: 11px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #3a2366;
+  transform: translateY(-2px);
+}
+
+.custom-popup {
+  position: fixed;          /* 🔥 take out of layout */
+  top: 100px;               /* below navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e6fffa;
+  color: #065f46;
+  padding: 14px 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  z-index: 9999;            /* 🔥 always on top */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

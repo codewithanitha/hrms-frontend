@@ -1,0 +1,52 @@
+/* 1. Reset everything to ensure no white gaps at the edges */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+/* 2. The Layout Wrapper */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 3. The Full-Screen Centered Section */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 40px;
+}
+
+/* 4. The Content Box */
+.home-container {
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+}
+
+/* 🔥 TITLE – slightly refined */
+.home-title {
+  font-size: 48px;          /* 🔽 from 52px */
+  font-weight: 700;
+  color: #4b2e83;
+  margin-bottom: 18px;     /* 🔽 tighter spacing */
+}
+
+/* 🔥 PARAGRAPH – THIS IS THE MAIN FIX */
+.home-description {
+  font-size: 16px;         /* 🔽 from 22px (too big before) */
+  line-height: 1.6;
+  color: #333;
+  max-width: 700px;        /* 🔥 keeps text compact & classy */
+  margin: 0 auto;
+}

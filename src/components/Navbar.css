@@ -1,0 +1,36 @@
+/* navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Increased padding (top/bottom) to make the navbar taller */
+  padding: 30px 60px; 
+  background-color: #b18fcf; /* African Violet */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.navbar h3 {
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  /* Increased Logo size */
+  font-size: 32px; 
+  font-weight: 800;
+}
+
+.navbar a {
+  color: #f4f4fb;
+  margin-left: 35px;
+  text-decoration: none;
+  font-weight: 800; /* Already 800 as requested */
+  /* Increased Menu Link size */
+  font-size: 22px; 
+  transition: all 0.3s ease; /* Smooth transition for hover */
+}
+
+.navbar a:hover {
+  text-decoration: none; /* Underline is often less professional, so we use color/scale */
+  color: #ffffff;
+  transform: scale(1.05); /* Slight grow effect on hover */
+}
