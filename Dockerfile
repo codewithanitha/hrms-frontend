@@ -1,4 +1,4 @@
-# STEP 1: React build stage
+# 1. Use Node to build React app
 FROM node:18-alpine AS build
 
 WORKDIR /app
@@ -9,8 +9,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-
-# STEP 2: Nginx serve stage
+# 2. Use Nginx to serve React build
 FROM nginx:alpine
 
 COPY --from=build /app/build /usr/share/nginx/html

@@ -1,44 +1,66 @@
-import React, { useState } from 'react';
-import './AddEmployee.css';
+import React, { useState } from "react";
+import "./AddEmployee.css";
 
 const AddEmployee = () => {
   const [showPopup, setShowPopup] = useState(false);
 
+  const [employee, setEmployee] = useState({
+    employeeName: "",
+    employeeRole: "",
+    salary: "",
+    hra: "",
+    electricity: "",
+    shopping: "",
+  });
+
+  const handleChange = (e) => {
+    setEmployee({
+      ...employee,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Gather data from the 6 input fields in your form
-    const employeeData = {
-  employeeName: e.target[0].value,
-  employeeRole: e.target[1].value,
-  salary: parseFloat(e.target[2].value),
-  hra: parseFloat(e.target[3].value),
-  electricity: parseFloat(e.target[4].value),
-  shopping: parseFloat(e.target[5].value)
-};
 
     try {
       const response = await fetch("http://localhost:8080/api/employees", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(employeeData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...employee,
+          salary: Number(employee.salary),
+          hra: Number(employee.hra),
+          electricity: Number(employee.electricity),
+          shopping: Number(employee.shopping),
+        }),
       });
 
-      if (response.ok) {
-        setShowPopup(true); // Success popup
-        setTimeout(() => setShowPopup(false), 3000);
-        e.target.reset(); 
-      } else {
-        alert("❌ Server Error: Check if your Entity fields match these names.");
+      if (!response.ok) {
+        throw new Error("Backend error");
       }
+
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 2500);
+
+      setEmployee({
+        employeeName: "",
+        employeeRole: "",
+        salary: "",
+        hra: "",
+        electricity: "",
+        shopping: "",
+      });
     } catch (error) {
-      console.error("Connection Error:", error);
-      alert("❌ Cannot reach Backend. Make sure Spring Boot is running on port 8080.");
+      console.error(error);
+      alert("❌ Cannot reach Backend. Make sure Spring Boot is running on port 8080");
     }
   };
+
   return (
     <div className="add-employee-wrapper">
-      {/* Professional Success Popup */}
       {showPopup && (
         <div className="custom-popup">
           <div className="popup-content">
@@ -50,36 +72,77 @@ const AddEmployee = () => {
 
       <div className="add-employee-container">
         <h2 className="page-title">Add Employee</h2>
-        
+
         <form className="employee-form" onSubmit={handleSubmit}>
           <div className="form-grid">
             <div className="form-group">
               <label>Employee Name</label>
-              <input type="text" placeholder="Enter name" required />
+              <input
+                name="employeeName"
+                value={employee.employeeName}
+                onChange={handleChange}
+                required
+              />
             </div>
+
             <div className="form-group">
               <label>Employee Role</label>
-              <input type="text" placeholder="Enter role" required />
+              <input
+                name="employeeRole"
+                value={employee.employeeRole}
+                onChange={handleChange}
+                required
+              />
             </div>
+
             <div className="form-group">
               <label>Salary</label>
-              <input type="number" placeholder="Enter salary" required />
+              <input
+                type="number"
+                name="salary"
+                value={employee.salary}
+                onChange={handleChange}
+                required
+              />
             </div>
+
             <div className="form-group">
               <label>House Rent Allowance</label>
-              <input type="number" placeholder="Enter HRA" required />
+              <input
+                type="number"
+                name="hra"
+                value={employee.hra}
+                onChange={handleChange}
+                required
+              />
             </div>
+
             <div className="form-group">
               <label>Electricity</label>
-              <input type="number" placeholder="Enter amount" required />
+              <input
+                type="number"
+                name="electricity"
+                value={employee.electricity}
+                onChange={handleChange}
+                required
+              />
             </div>
+
             <div className="form-group">
               <label>Shopping</label>
-              <input type="number" placeholder="Enter amount" required />
+              <input
+                type="number"
+                name="shopping"
+                value={employee.shopping}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
-          
-          <button type="submit" className="submit-btn">Add Employee</button>
+
+          <button type="submit" className="submit-btn">
+            Add Employee
+          </button>
         </form>
       </div>
     </div>
