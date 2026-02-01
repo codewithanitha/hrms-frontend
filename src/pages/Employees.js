@@ -17,7 +17,7 @@ const Employees = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/employees");
+      const response = await axios.get("https://hrms-backend-abyl.onrender.com/api/employees");
       setEmployees(response.data);
       setLoading(false);
     } catch (error) {
@@ -38,7 +38,7 @@ const Employees = () => {
 
     try {
       await axios.put(
-        `http://localhost:8080/api/employees/${selectedId}?percentage=${percentage}`
+        `https://hrms-backend-abyl.onrender.com/api/employees/${selectedId}?percentage=${percentage}`
       );
       setShowModal(false);
       fetchEmployees();
@@ -52,7 +52,7 @@ const Employees = () => {
     if (!window.confirm("Are you sure you want to delete this employee?")) return;
 
     try {
-      await axios.delete(`http://localhost:8080/api/employees/${id}`);
+      await axios.delete(`https://hrms-backend-abyl.onrender.com/api/employees/${id}`);
       fetchEmployees();
     } catch (error) {
       alert("Delete failed");
